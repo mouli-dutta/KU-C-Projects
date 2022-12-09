@@ -19,6 +19,11 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="LinkedListFunctions.h" />
+		<Unit filename="StructNode.h" />
+		<Unit filename="linked_list.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

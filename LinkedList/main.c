@@ -10,7 +10,7 @@
 
 void print_menu(char **str, int length) {
     for(int i = 0; i < length; i++)
-        printf("%s", str[i]);
+        printf("%s", *(str+i));
 }
 
 int take_input(char *s) {
@@ -30,11 +30,13 @@ int main() {
                          "\t5) Delete first node.\n",
                          "\t6) Delete last node.\n",
                          "\t7) Delete node at given index (index starts from 0).\n",
-                         "\t8) Length.\n",
-                         "\t9) Sort.\n",
-                         "\t10) Search.\n",
-                         "\t11) Display.\n",
-                         "\t12) Exit.\n\n"
+                         "\t8) Get the value of a node at given index.\n",
+                         "\t9) Set the data of a node at given index.\n",
+                         "\t10) Length.\n",
+                         "\t11) Sort.\n",
+                         "\t12) Search.\n",
+                         "\t13) Display.\n",
+                         "\t14) Exit.\n\n"
                       };
 
     int len = ARRAY_LENGTH(menu_arr);
@@ -77,24 +79,33 @@ int main() {
             break;
 
             case 8:
-                printf("The length of the Linked List is %d.\n", get_length(head));
+                printf("The value of the node is %d.\n", get(head, take_input("Enter the index.\n")));
             break;
 
             case 9:
+                set(&head, take_input("Enter the index.\n"), take_input("Enter the new data.\n"));
+            break;
+
+            case 10:
+                printf("The length of the Linked List is %d.\n", get_length(head));
+            break;
+
+            case 11:
                 merge_sort(&head);
                 printf("The list is sorted in increasing order.\n");
             break;
 
-            case 10:
+            case 12:
                 search_list(head, take_input("Enter the data you want to search.\n")) ?
                 printf("Found\n") : printf("Not Found\n");
             break;
 
-            case 11:
+            case 13:
                 display(head);
             break;
 
-            case 12:
+            case 14:
+                printf("Terminating the process.\n");
                 exit(0);
             break;
 

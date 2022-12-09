@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include "LinkedListFunctions.h"
@@ -7,8 +7,8 @@
 // Given int data creates a new node of the list.
 NodePtr* new_node(int data) {
     NodePtr *node = (NodePtr*) malloc(sizeof(NodePtr));
-    node->next = NULL;
     node->data = data;
+    node->next = NULL;
     return node;
 }
 
@@ -17,11 +17,11 @@ NodePtr* new_node(int data) {
 void insert_begin(NodePtr **head, int data) {
 
     // create a new node and make the new node as head
-    NodePtr *new_ = new_node(data);
-    new_->next = *head;
-    *head = new_;
+    NodePtr *new_head = new_node(data);
+    new_head->next = *head;
+    *head = new_head;
 
-    printf("%d is inserted at first.\n", new_->data);
+    printf("%d is inserted at first.\n", new_head->data);
 }
 
 // Given a reference (pointer to pointer) to the head of the list
@@ -169,9 +169,9 @@ void delete_at(NodePtr **head, int index) {
 
     // previous node of the node to be deleted
     NodePtr *previous = *head;
-    for(int i = 0; i < index-1; i++) {
-        previous = previous->next;
-    }
+    for(int i = 0; i < index-1; i++)
+        if(previous->next)
+            previous = previous->next;
 
     // node to be deleted
     NodePtr *del = previous->next;
@@ -187,6 +187,44 @@ void delete_at(NodePtr **head, int index) {
 
 }
 
+// Given the head of the linked list and an index
+// gets the value of the node in that index
+// and if not found returns -1
+int get(NodePtr *head, int index) {
+    int len = get_length(head);
+
+    if(index < 0 || index > len || head == NULL) {
+        printf("Invalid index\n");
+        return -1;
+    }
+
+    if(index == 0)
+        return head->data;
+
+    return get(head->next, index-1);
+}
+
+// Given a reference (pointer to pointer) to the head of the list,
+// modifies the current value in that node to a given value.
+void set(NodePtr **head, int index, int value) {
+    int len = get_length(*head);
+
+    if(index < 0 || index >= len || head == NULL || *head == NULL) {
+        printf("Can't modify the data of a node at invalid index.\n");
+        return;
+    }
+
+    NodePtr *current = *head;
+
+    for(int i = 0; i < index; i++)
+        if(current->next)
+            current = current->next;
+
+    current->data = value;
+
+    printf("Updated with new value.\n");
+}
+
 // Looks for the data in a list
 bool search_list(NodePtr *head, int data) {
     // base case
@@ -198,7 +236,7 @@ bool search_list(NodePtr *head, int data) {
         return true;
 
     // recur for the remaining list
-    search_list(head->next, data);
+    return search_list(head->next, data);
 }
 
 // takes two sorted list in increasing order and

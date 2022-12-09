@@ -30,6 +30,11 @@ void delete_last(NodePtr**);
 // delete node at given index
 void delete_at(NodePtr**, int);
 
+// returns the value at given index otherwise -1
+int get(NodePtr*, int);
+
+void set(NodePtr**, int, int);
+
 // search an element in list
 bool search_list(NodePtr*, int);
 

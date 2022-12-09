@@ -10,7 +10,7 @@
 
 void print_menu(char **str, int length) {
     for(int i = 0; i < length; i++)
-        printf("%s", str[i]);
+        printf("%s", *(str+i));
 }
 
 int take_input(char *s) {

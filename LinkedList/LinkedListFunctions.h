@@ -1,8 +1,14 @@
 #ifndef LINKEDLISTFUNCTIONS_H_INCLUDED
 #define LINKEDLISTFUNCTIONS_H_INCLUDED
 
-#include "StructNode.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
+
+typedef struct Node {
+    int data;
+    struct Node *next;
+} NodePtr;
 
 // prototypes for the functions of LinkedList
 

@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
 #include "LinkedListFunctions.h"
 
 #if !defined (ARRAY_LENGTH)

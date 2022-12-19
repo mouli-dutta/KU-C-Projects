@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
 #include "LinkedListFunctions.h"
-#include "StructNode.h"
 
 // Given int data creates a new node of the list.
 NodePtr* new_node(int data) {
